@@ -1,1108 +1,274 @@
 <!DOCTYPE html>
-<html lang="ru" class="scroll-smooth">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veloura Skin Clinic — Премиальная клиника эстетической медицины</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        velouraBg: '#FAF7F2',
-                        velouraBurgundy: '#5E2B4D',
-                        velouraBurgundyHover: '#4A223D',
-                        velouraGold: '#D4AF37',
-                        velouraGoldDark: '#B8972A',
-                        velouraDark: '#333333',
-                        velouraLightCard: '#FFFFFF',
-                    },
-                    fontFamily: {
-                        serif: ['"Playfair Display"', 'serif'],
-                        sans: ['Inter', 'Montserrat', 'sans-serif'],
-                    }
-                }
-            }
-        }
-    </script>
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
-    <!-- FontAwesome for Minimalistic Linear Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Валериана — Клиника эстетической медицины</title>
+    <!-- Google Fonts: Playfair Display & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    
     <style>
+        :root {
+            --bg-color: #FAF7F2;
+            --accent-burgundy: #5E2B4D;
+            --accent-gold: #D4AF37;
+            --text-main: #333333;
+            --text-light: #666666;
+            --white: #FFFFFF;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            background-color: #FAF7F2;
-            color: #333333;
             font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
         }
 
-        h1, h2, h3, h4, .font-serif {
+        h1, h2, h3, h4, .serif {
             font-family: 'Playfair Display', serif;
+            font-weight: 600;
         }
 
-        /* Glow animation for Primary Button */
-        @keyframes glow {
-            0% {
-                box-shadow: 0 0 5px rgba(212, 175, 55, 0.4), 0 0 10px rgba(94, 43, 77, 0.2);
-            }
-            50% {
-                box-shadow: 0 0 20px rgba(212, 175, 55, 0.8), 0 0 30px rgba(94, 43, 77, 0.4);
-            }
-            100% {
-                box-shadow: 0 0 5px rgba(212, 175, 55, 0.4), 0 0 10px rgba(94, 43, 77, 0.2);
-            }
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
         }
 
-        .btn-glow {
-            animation: glow 3s infinite ease-in-out;
-        }
-
-        /* Ken Burns Zoom Effect */
-        @keyframes kenBurns {
-            0% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.08);
-            }
-            100% {
-                transform: scale(1);
-            }
-        }
-
-        .ken-burns {
-            animation: kenBurns 20s infinite alternate ease-in-out;
-        }
-
-        /* Before & After Range Slider styling */
-        .ba-slider {
-            position: relative;
-            overflow: hidden;
-            border-radius: 12px;
-            user-select: none;
-        }
-
-        .ba-slider img {
-            display: block;
+        /* --- HEADER --- */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
-            height: 320px;
-            object-fit: cover;
-            pointer-events: none;
+            background-color: rgba(250, 247, 242, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
         }
 
-        .ba-resize {
+        .header-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 90px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: var(--accent-burgundy);
+        }
+
+        .logo svg {
+            width: 36px;
+            height: 36px;
+            fill: var(--accent-gold);
+        }
+
+        .logo-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 26px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--text-main);
+            font-size: 15px;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .nav-link:hover {
+            color: var(--accent-burgundy);
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .phone-link {
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: 600;
+            font-size: 15px;
+            transition: var(--transition);
+        }
+
+        .phone-link:hover {
+            color: var(--accent-burgundy);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 28px;
+            border-radius: 30px;
+            font-size: 15px;
+            font-weight: 500;
+            text-decoration: none;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+        }
+
+        .btn-primary {
+            background-color: var(--accent-burgundy);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background-color: #4a223d;
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 1px solid var(--accent-burgundy);
+            color: var(--accent-burgundy);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--accent-burgundy);
+            color: var(--white);
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            position: relative;
+            padding-top: 140px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-slider {
+            position: relative;
+            width: 100%;
+            min-height: 580px;
+        }
+
+        .hero-slide {
             position: absolute;
             top: 0;
             left: 0;
-            height: 100%;
-            width: 50%;
-            overflow: hidden;
-        }
-
-        .ba-resize img {
-            width: auto;
-            max-width: none;
-            height: 320px;
-        }
-
-        .ba-range {
-            position: absolute;
-            inset: 0;
+            width: 100%;
             opacity: 0;
+            visibility: hidden;
+            transition: opacity 1s ease-in-out, visibility 1s ease-in-out;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            gap: 60px;
+        }
+
+        .hero-slide.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .hero-content {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .hero-content h1 {
+            font-size: 52px;
+            line-height: 1.15;
+            color: var(--text-main);
+        }
+
+        .hero-content p {
+            font-size: 18px;
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            margin-top: 10px;
+        }
+
+        .btn-glow {
+            position: relative;
+            animation: glowPulse 2.5s infinite;
+        }
+
+        @keyframes glowPulse {
+            0% { box-shadow: 0 0 0 0 rgba(94, 43, 77, 0.4); }
+            70% { box-shadow: 0 0 0 15px rgba(94, 43, 77, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(94, 43, 77, 0); }
+        }
+
+        .hero-image-wrapper {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+            height: 480px;
+        }
+
+        .hero-image-wrapper img {
             width: 100%;
             height: 100%;
-            cursor: ew-resize;
-            z-index: 30;
+            object-fit: cover;
         }
 
-        .ba-handle {
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            left: 50%;
-            width: 3px;
-            background: #D4AF37;
-            z-index: 20;
-            pointer-events: none;
-        }
-
-        .ba-handle-btn {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 38px;
-            height: 38px;
-            background: #5E2B4D;
-            color: #D4AF37;
-            border-radius: 50%;
+        .slider-dots {
             display: flex;
-            align-items: center;
             justify-content: center;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-            font-size: 14px;
+            gap: 10px;
+            margin-top: 40px;
+            padding-bottom: 40px;
         }
 
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #FAF7F2;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #5E2B4D;
-            border-radius: 4px;
-        }
-    </style>
-</head>
-<body class="antialiased selection:bg-velouraBurgundy selection:text-white">
-
-    <!-- Navigation Bar -->
-    <header id="navbar" class="fixed top-0 left-0 right-0 z-50 bg-[#FAF7F2]/90 backdrop-blur-md border-b border-[#E5DEC9] transition-all duration-300">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            <!-- Logo -->
-            <a href="#" class="flex items-center space-x-3 group">
-                <div class="w-10 h-10 rounded-full bg-velouraBurgundy flex items-center justify-center text-velouraGold shadow-md group-hover:rotate-12 transition-transform duration-300">
-                    <i class="fa-solid fa-spa text-lg"></i>
-                </div>
-                <div class="flex flex-col">
-                    <span class="font-serif text-2xl font-bold tracking-wider text-velouraBurgundy">VELOURA</span>
-                    <span class="text-[10px] tracking-[0.25em] uppercase text-velouraGoldDark font-medium">Skin Clinic</span>
-                </div>
-            </a>
-
-            <!-- Desktop Nav Links -->
-            <nav class="hidden md:flex items-center space-x-8 text-sm font-medium text-velouraDark">
-                <a href="#hero" class="hover:text-velouraBurgundy transition-colors">Главная</a>
-                <a href="#services" class="hover:text-velouraBurgundy transition-colors">Услуги</a>
-                <a href="#results" class="hover:text-velouraBurgundy transition-colors">До и После</a>
-                <a href="#about" class="hover:text-velouraBurgundy transition-colors">О нас</a>
-                <a href="#specialists" class="hover:text-velouraBurgundy transition-colors">Специалисты</a>
-                <a href="#testimonials" class="hover:text-velouraBurgundy transition-colors">Отзывы</a>
-                <a href="#contact" class="hover:text-velouraBurgundy transition-colors">Контакты</a>
-            </nav>
-
-            <!-- Top Right Action -->
-            <div class="hidden lg:flex items-center space-x-4">
-                <a href="tel:+74951234567" class="text-xs font-semibold text-velouraBurgundy flex items-center space-x-2 bg-white px-3 py-2 rounded-full border border-[#E5DEC9] shadow-sm">
-                    <i class="fa-solid fa-phone text-velouraGold"></i>
-                    <span>+7 (495) 123-45-67</span>
-                </a>
-                <a href="#booking" class="bg-velouraBurgundy hover:bg-velouraBurgundyHover text-white text-xs uppercase tracking-wider font-semibold px-5 py-3 rounded-full transition-all duration-300 shadow-md">
-                    Записаться
-                </a>
-            </div>
-
-            <!-- Mobile Menu Button -->
-            <button id="mobile-menu-btn" class="md:hidden text-velouraBurgundy p-2 focus:outline-none">
-                <i class="fa-solid fa-bars text-2xl"></i>
-            </button>
-        </div>
-
-        <!-- Mobile Menu Dropdown -->
-        <div id="mobile-menu" class="hidden md:hidden bg-[#FAF7F2] border-b border-[#E5DEC9] px-6 py-4 space-y-3 shadow-lg">
-            <a href="#hero" class="block text-velouraDark font-medium hover:text-velouraBurgundy py-1">Главная</a>
-            <a href="#services" class="block text-velouraDark font-medium hover:text-velouraBurgundy py-1">Услуги</a>
-            <a href="#results" class="block text-velouraDark font-medium hover:text-velouraBurgundy py-1">До и После</a>
-            <a href="#about" class="block text-velouraDark font-medium hover:text-velouraBurgundy py-1">О нас</a>
-            <a href="#specialists" class="block text-velouraDark font-medium hover:text-velouraBurgundy py-1">Специалисты</a>
-            <a href="#testimonials" class="block text-velouraDark font-medium hover:text-velouraBurgundy py-1">Отзывы</a>
-            <a href="#contact" class="block text-velouraDark font-medium hover:text-velouraBurgundy py-1">Контакты</a>
-            <div class="pt-2 border-t border-[#E5DEC9] flex flex-col space-y-2">
-                <a href="tel:+74951234567" class="text-sm font-semibold text-velouraBurgundy flex items-center space-x-2 py-1">
-                    <i class="fa-solid fa-phone text-velouraGold"></i>
-                    <span>+7 (495) 123-45-67</span>
-                </a>
-                <a href="#booking" class="bg-velouraBurgundy text-center text-white text-xs uppercase tracking-wider font-semibold py-3 rounded-full">
-                    Записаться
-                </a>
-            </div>
-        </div>
-    </header>
-
-    <!-- Hero Section -->
-    <section id="hero" class="relative pt-28 md:pt-32 pb-16 md:pb-24 overflow-hidden">
-        <!-- Hero Background Slider Container -->
-        <div class="absolute inset-0 z-0 overflow-hidden">
-            <div class="hero-slide absolute inset-0 opacity-100 transition-opacity duration-1000 ease-in-out">
-                <img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=1920&auto=format&fit=crop" alt="Интерьер клиники" class="w-full h-full object-cover brightness-[0.9]">
-            </div>
-            <div class="hero-slide absolute inset-0 opacity-0 transition-opacity duration-1000 ease-in-out">
-                <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?q=80&w=1920&auto=format&fit=crop" alt="Процесс процедуры" class="w-full h-full object-cover brightness-[0.85]">
-            </div>
-            <div class="hero-slide absolute inset-0 opacity-0 transition-opacity duration-1000 ease-in-out">
-                <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?q=80&w=1920&auto=format&fit=crop" alt="Довольная клиентка" class="w-full h-full object-cover brightness-[0.9]">
-            </div>
-            <div class="absolute inset-0 bg-gradient-to-r from-[#FAF7F2] via-[#FAF7F2]/80 to-transparent"></div>
-        </div>
-
-        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20 flex flex-col lg:flex-row items-center justify-between">
-            <div class="max-w-2xl text-center lg:text-left space-y-6">
-                <div class="inline-flex items-center space-x-2 bg-white/80 border border-[#E5DEC9] px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-widest text-velouraBurgundy shadow-sm">
-                    <span class="w-2 h-2 rounded-full bg-velouraGold"></span>
-                    <span>Премиальная эстетическая медицина</span>
-                </div>
-                <h1 class="text-4xl sm:text-6xl lg:text-7xl font-serif font-bold text-velouraBurgundy leading-tight">
-                    Advanced Care.<br><span class="italic text-velouraGoldDark">Radiant You.</span>
-                </h1>
-                <p class="text-base sm:text-lg text-velouraDark/80 font-light max-w-xl mx-auto lg:mx-0">
-                    Передовые методики омоложения, экспертная дерматология и индивидуальный подход для вашей сияющей, здоровой кожи в центре Москвы.
-                </p>
-                <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
-                    <a href="#booking" class="w-full sm:w-auto text-center bg-velouraBurgundy hover:bg-velouraBurgundyHover text-white font-medium px-8 py-4 rounded-full shadow-lg btn-glow transition-all duration-300">
-                        Book Consultation
-                    </a>
-                    <button onclick="openVideoTourModal()" class="w-full sm:w-auto text-center bg-white/90 hover:bg-white text-velouraBurgundy border border-velouraBurgundy/30 font-medium px-8 py-4 rounded-full shadow-sm hover:shadow transition-all duration-300 flex items-center justify-center space-x-2">
-                        <i class="fa-regular fa-circle-play text-velouraGold text-lg"></i>
-                        <span>Watch Clinic Tour</span>
-                    </button>
-                </div>
-
-                <!-- Trust Badges -->
-                <div class="pt-8 grid grid-cols-2 sm:grid-cols-4 gap-4 border-t border-[#E5DEC9]/60">
-                    <div class="flex items-center space-x-2">
-                        <i class="fa-solid fa-award text-velouraGold text-xl"></i>
-                        <span class="text-xs font-medium text-velouraDark">FDA-сертифицировано</span>
-                    </div>
-                    <div class="flex items-center space-x-2">
-                        <i class="fa-solid fa-user-doctor text-velouraGold text-xl"></i>
-                        <span class="text-xs font-medium text-velouraDark">Врачи высшей категории</span>
-                    </div>
-                    <div class="flex items-center space-x-2">
-                        <i class="fa-solid fa-fingerprint text-velouraGold text-xl"></i>
-                        <span class="text-xs font-medium text-velouraDark">Персональные протоколы</span>
-                    </div>
-                    <div class="flex items-center space-x-2">
-                        <i class="fa-solid fa-shield-heart text-velouraGold text-xl"></i>
-                        <span class="text-xs font-medium text-velouraDark">Безопасно и комфортно</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Slider Dots -->
-            <div class="flex lg:flex-col items-center justify-center space-x-3 lg:space-x-0 lg:space-y-3 mt-8 lg:mt-0">
-                <button onclick="currentSlide(0)" class="hero-dot w-3 h-3 rounded-full bg-velouraBurgundy transition-all duration-300" aria-label="Slide 1"></button>
-                <button onclick="currentSlide(1)" class="hero-dot w-3 h-3 rounded-full bg-velouraBurgundy/30 transition-all duration-300" aria-label="Slide 2"></button>
-                <button onclick="currentSlide(2)" class="hero-dot w-3 h-3 rounded-full bg-velouraBurgundy/30 transition-all duration-300" aria-label="Slide 3"></button>
-            </div>
-        </div>
-    </section>
-
-    <!-- Services Section -->
-    <section id="services" class="py-20 bg-white/60">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-2xl mx-auto mb-16 space-y-4">
-                <span class="text-xs font-semibold uppercase tracking-widest text-velouraGoldDark bg-[#FAF7F2] px-4 py-1.5 rounded-full border border-[#E5DEC9]">Наши услуги</span>
-                <h2 class="text-3xl sm:text-5xl font-serif font-bold text-velouraBurgundy">Signature Treatments</h2>
-                <p class="text-velouraDark/70 text-sm sm:text-base">Комплексные программы ухода и передовые аппаратные методики для безупречного преображения.</p>
-            </div>
-
-            <!-- Services Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Service 1 -->
-                <div class="service-card bg-[#FAF7F2] rounded-[12px] p-8 border border-[#E5DEC9]/80 shadow-sm hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1.5 flex flex-col justify-between group">
-                    <div>
-                        <div class="w-14 h-14 rounded-full bg-white flex items-center justify-center text-velouraBurgundy group-hover:text-velouraGold transition-colors duration-300 shadow-sm mb-6">
-                            <i class="fa-solid fa-wand-magic-sparkles text-2xl"></i>
-                        </div>
-                        <h3 class="text-xl font-serif font-bold text-velouraBurgundy mb-3">Лазерное омоложение</h3>
-                        <p class="text-velouraDark/70 text-sm leading-relaxed mb-6">Инновационная лазерная шлифовка и стимуляция коллагена для выравнивания текстуры и тона кожи.</p>
-                    </div>
-                    <button onclick="openServiceModal('laser')" class="inline-flex items-center space-x-2 text-xs font-bold uppercase tracking-wider text-velouraBurgundy group-hover:text-velouraGoldDark transition-colors">
-                        <span>Подробнее</span>
-                        <i class="fa-solid fa-arrow-right transition-transform group-hover:translate-x-1"></i>
-                    </button>
-                </div>
-
-                <!-- Service 2 -->
-                <div class="service-card bg-[#FAF7F2] rounded-[12px] p-8 border border-[#E5DEC9]/80 shadow-sm hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1.5 flex flex-col justify-between group">
-                    <div>
-                        <div class="w-14 h-14 rounded-full bg-white flex items-center justify-center text-velouraBurgundy group-hover:text-velouraGold transition-colors duration-300 shadow-sm mb-6">
-                            <i class="fa-solid fa-sun text-2xl"></i>
-                        </div>
-                        <h3 class="text-xl font-serif font-bold text-velouraBurgundy mb-3">Удаление пигментации</h3>
-                        <p class="text-velouraDark/70 text-sm leading-relaxed mb-6">Прицельное воздействие на меланин для безупречно чистой, сияющей кожи без возрастных пятен.</p>
-                    </div>
-                    <button onclick="openServiceModal('pigmentation')" class="inline-flex items-center space-x-2 text-xs font-bold uppercase tracking-wider text-velouraBurgundy group-hover:text-velouraGoldDark transition-colors">
-                        <span>Подробнее</span>
-                        <i class="fa-solid fa-arrow-right transition-transform group-hover:translate-x-1"></i>
-                    </button>
-                </div>
-
-                <!-- Service 3 -->
-                <div class="service-card bg-[#FAF7F2] rounded-[12px] p-8 border border-[#E5DEC9]/80 shadow-sm hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1.5 flex flex-col justify-between group">
-                    <div>
-                        <div class="w-14 h-14 rounded-full bg-white flex items-center justify-center text-velouraBurgundy group-hover:text-velouraGold transition-colors duration-300 shadow-sm mb-6">
-                            <i class="fa-solid fa-shield-virus text-2xl"></i>
-                        </div>
-                        <h3 class="text-xl font-serif font-bold text-velouraBurgundy mb-3">Лечение акне и постакне</h3>
-                        <p class="text-velouraDark/70 text-sm leading-relaxed mb-6">Глубокое очищение, купирование воспалительных процессов и лазерное сглаживание рубцов.</p>
-                    </div>
-                    <button onclick="openServiceModal('acne')" class="inline-flex items-center space-x-2 text-xs font-bold uppercase tracking-wider text-velouraBurgundy group-hover:text-velouraGoldDark transition-colors">
-                        <span>Подробнее</span>
-                        <i class="fa-solid fa-arrow-right transition-transform group-hover:translate-x-1"></i>
-                    </button>
-                </div>
-
-                <!-- Service 4 -->
-                <div class="service-card bg-[#FAF7F2] rounded-[12px] p-8 border border-[#E5DEC9]/80 shadow-sm hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1.5 flex flex-col justify-between group">
-                    <div>
-                        <div class="w-14 h-14 rounded-full bg-white flex items-center justify-center text-velouraBurgundy group-hover:text-velouraGold transition-colors duration-300 shadow-sm mb-6">
-                            <i class="fa-solid fa-hourglass-start text-2xl"></i>
-                        </div>
-                        <h3 class="text-xl font-serif font-bold text-velouraBurgundy mb-3">Anti-Age терапия</h3>
-                        <p class="text-velouraDark/70 text-sm leading-relaxed mb-6">Коррекция возрастных изменений, подтяжка контуров лица и стимуляция естественного синтеза эластина.</p>
-                    </div>
-                    <button onclick="openServiceModal('antiaging')" class="inline-flex items-center space-x-2 text-xs font-bold uppercase tracking-wider text-velouraBurgundy group-hover:text-velouraGoldDark transition-colors">
-                        <span>Подробнее</span>
-                        <i class="fa-solid fa-arrow-right transition-transform group-hover:translate-x-1"></i>
-                    </button>
-                </div>
-
-                <!-- Service 5 -->
-                <div class="service-card bg-[#FAF7F2] rounded-[12px] p-8 border border-[#E5DEC9]/80 shadow-sm hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1.5 flex flex-col justify-between group">
-                    <div>
-                        <div class="w-14 h-14 rounded-full bg-white flex items-center justify-center text-velouraBurgundy group-hover:text-velouraGold transition-colors duration-300 shadow-sm mb-6">
-                            <i class="fa-solid fa-feather text-2xl"></i>
-                        </div>
-                        <h3 class="text-xl font-serif font-bold text-velouraBurgundy mb-3">Лазерная эпиляция</h3>
-                        <p class="text-velouraDark/70 text-sm leading-relaxed mb-6">Безболезненное и абсолютно безопасное удаление волос на диодном лазере нового поколения.</p>
-                    </div>
-                    <button onclick="openServiceModal('epilation')" class="inline-flex items-center space-x-2 text-xs font-bold uppercase tracking-wider text-velouraBurgundy group-hover:text-velouraGoldDark transition-colors">
-                        <span>Подробнее</span>
-                        <i class="fa-solid fa-arrow-right transition-transform group-hover:translate-x-1"></i>
-                    </button>
-                </div>
-
-                <!-- Service 6 -->
-                <div class="service-card bg-[#FAF7F2] rounded-[12px] p-8 border border-[#E5DEC9]/80 shadow-sm hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1.5 flex flex-col justify-between group">
-                    <div>
-                        <div class="w-14 h-14 rounded-full bg-white flex items-center justify-center text-velouraBurgundy group-hover:text-velouraGold transition-colors duration-300 shadow-sm mb-6">
-                            <i class="fa-solid fa-droplet text-2xl"></i>
-                        </div>
-                        <h3 class="text-xl font-serif font-bold text-velouraBurgundy mb-3">Гидро-пилинг лица</h3>
-                        <p class="text-velouraDark/70 text-sm leading-relaxed mb-6">Вакуумное очищение, эксфолиация и интенсивное увлажнение сыворотками с мгновенным сиянием.</p>
-                    </div>
-                    <button onclick="openServiceModal('hydro')" class="inline-flex items-center space-x-2 text-xs font-bold uppercase tracking-wider text-velouraBurgundy group-hover:text-velouraGoldDark transition-colors">
-                        <span>Подробнее</span>
-                        <i class="fa-solid fa-arrow-right transition-transform group-hover:translate-x-1"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Before & After Section -->
-    <section id="results" class="py-20 bg-[#FAF7F2]">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-2xl mx-auto mb-16 space-y-4">
-                <span class="text-xs font-semibold uppercase tracking-widest text-velouraGoldDark bg-white px-4 py-1.5 rounded-full border border-[#E5DEC9]">Результаты процедур</span>
-                <h2 class="text-3xl sm:text-5xl font-serif font-bold text-velouraBurgundy">Real Results. Real Confidence.</h2>
-                <p class="text-velouraDark/70 text-sm sm:text-base">Перемещайте ползунок на карточках, чтобы увидеть преображение кожи "До" и "После".</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Card 1: Rejuvenation -->
-                <div class="bg-white p-4 rounded-[12px] border border-[#E5DEC9] shadow-sm">
-                    <div class="ba-slider mb-4">
-                        <div class="ba-resize">
-                            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=600&auto=format&fit=crop" alt="До омоложения">
-                        </div>
-                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=600&auto=format&fit=crop" alt="После омоложения">
-                        <input type="range" min="0" max="100" value="50" class="ba-range" oninput="slideBa(this)">
-                        <div class="ba-handle" style="left: 50%;">
-                            <div class="ba-handle-btn"><i class="fa-solid fa-arrows-left-right text-xs"></i></div>
-                        </div>
-                        <span class="absolute bottom-3 left-3 bg-black/60 text-white text-[10px] uppercase font-bold px-2 py-1 rounded">До</span>
-                        <span class="absolute bottom-3 right-3 bg-velouraBurgundy text-white text-[10px] uppercase font-bold px-2 py-1 rounded">После</span>
-                    </div>
-                    <h3 class="font-serif font-bold text-lg text-velouraBurgundy px-2">Лазерное омоложение лица</h3>
-                    <p class="text-xs text-velouraDark/60 px-2 mt-1">Курс: 3 процедуры. Результат через 1 месяц.</p>
-                </div>
-
-                <!-- Card 2: Pigmentation -->
-                <div class="bg-white p-4 rounded-[12px] border border-[#E5DEC9] shadow-sm">
-                    <div class="ba-slider mb-4">
-                        <div class="ba-resize">
-                            <img src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?q=80&w=600&auto=format&fit=crop" alt="До пигментации">
-                        </div>
-                        <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=600&auto=format&fit=crop" alt="После пигментации">
-                        <input type="range" min="0" max="100" value="50" class="ba-range" oninput="slideBa(this)">
-                        <div class="ba-handle" style="left: 50%;">
-                            <div class="ba-handle-btn"><i class="fa-solid fa-arrows-left-right text-xs"></i></div>
-                        </div>
-                        <span class="absolute bottom-3 left-3 bg-black/60 text-white text-[10px] uppercase font-bold px-2 py-1 rounded">До</span>
-                        <span class="absolute bottom-3 right-3 bg-velouraBurgundy text-white text-[10px] uppercase font-bold px-2 py-1 rounded">После</span>
-                    </div>
-                    <h3 class="font-serif font-bold text-lg text-velouraBurgundy px-2">Удаление пигментных пятен</h3>
-                    <p class="text-xs text-velouraDark/60 px-2 mt-1">Курс: 2 сеанса. Результат через 3 недели.</p>
-                </div>
-
-                <!-- Card 3: Acne treatment -->
-                <div class="bg-white p-4 rounded-[12px] border border-[#E5DEC9] shadow-sm">
-                    <div class="ba-slider mb-4">
-                        <div class="ba-resize">
-                            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=600&auto=format&fit=crop" alt="До акне">
-                        </div>
-                        <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=600&auto=format&fit=crop" alt="После акне">
-                        <input type="range" min="0" max="100" value="50" class="ba-range" oninput="slideBa(this)">
-                        <div class="ba-handle" style="left: 50%;">
-                            <div class="ba-handle-btn"><i class="fa-solid fa-arrows-left-right text-xs"></i></div>
-                        </div>
-                        <span class="absolute bottom-3 left-3 bg-black/60 text-white text-[10px] uppercase font-bold px-2 py-1 rounded">До</span>
-                        <span class="absolute bottom-3 right-3 bg-velouraBurgundy text-white text-[10px] uppercase font-bold px-2 py-1 rounded">После</span>
-                    </div>
-                    <h3 class="font-serif font-bold text-lg text-velouraBurgundy px-2">Лечение постакне и рубцов</h3>
-                    <p class="text-xs text-velouraDark/60 px-2 mt-1">Курс: 4 процедуры. Результат через 2 месяца.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- About Us Section -->
-    <section id="about" class="py-20 bg-white overflow-hidden">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                <!-- Left: Image with Ken Burns effect -->
-                <div class="relative rounded-[12px] overflow-hidden shadow-2xl h-[450px]">
-                    <div class="absolute inset-0 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=1200&auto=format&fit=crop" alt="Интерьер Veloura Skin Clinic" class="w-full h-full object-cover ken-burns">
-                    </div>
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
-                    <div class="absolute bottom-6 left-6 right-6 text-white">
-                        <span class="text-xs uppercase tracking-widest text-velouraGold font-semibold">Клиника премиум-класса</span>
-                        <p class="font-serif text-2xl font-bold">г. Москва, ул. Стрелецкая д. 15</p>
-                    </div>
-                </div>
-
-                <!-- Right: Text & Advantages -->
-                <div class="space-y-6">
-                    <span class="text-xs font-semibold uppercase tracking-widest text-velouraGoldDark bg-[#FAF7F2] px-4 py-1.5 rounded-full border border-[#E5DEC9]">О нашей клинике</span>
-                    <h2 class="text-3xl sm:text-5xl font-serif font-bold text-velouraBurgundy leading-tight">
-                        Where Science Meets Aesthetics
-                    </h2>
-                    <p class="text-velouraDark/80 text-base leading-relaxed">
-                        Veloura Skin Clinic — это синергия передовых медицинских технологий, врачебного опыта и безупречного сервиса. Мы создаем пространство, где каждый пациент получает персонализированный уход, безопасность экспертного уровня и естественные результаты.
-                    </p>
-                    
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
-                        <div class="flex items-start space-x-3 bg-[#FAF7F2] p-4 rounded-[12px] border border-[#E5DEC9]/50">
-                            <div class="text-velouraGold text-xl mt-0.5"><i class="fa-solid fa-circle-check"></i></div>
-                            <div>
-                                <h4 class="font-bold text-velouraBurgundy text-sm">FDA-технологии</h4>
-                                <p class="text-xs text-velouraDark/70 mt-1">Оборудование экспертного класса из США и Европы.</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start space-x-3 bg-[#FAF7F2] p-4 rounded-[12px] border border-[#E5DEC9]/50">
-                            <div class="text-velouraGold text-xl mt-0.5"><i class="fa-solid fa-circle-check"></i></div>
-                            <div>
-                                <h4 class="font-bold text-velouraBurgundy text-sm">Опытные врачи</h4>
-                                <p class="text-xs text-velouraDark/70 mt-1">Дерматологи и косметологи с опытом от 10 лет.</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start space-x-3 bg-[#FAF7F2] p-4 rounded-[12px] border border-[#E5DEC9]/50">
-                            <div class="text-velouraGold text-xl mt-0.5"><i class="fa-solid fa-circle-check"></i></div>
-                            <div>
-                                <h4 class="font-bold text-velouraBurgundy text-sm">Индивидуальный подход</h4>
-                                <p class="text-xs text-velouraDark/70 mt-1">Генетические тесты и персонализированные протоколы.</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start space-x-3 bg-[#FAF7F2] p-4 rounded-[12px] border border-[#E5DEC9]/50">
-                            <div class="text-velouraGold text-xl mt-0.5"><i class="fa-solid fa-circle-check"></i></div>
-                            <div>
-                                <h4 class="font-bold text-velouraBurgundy text-sm">Абсолютная стерильность</h4>
-                                <p class="text-xs text-velouraDark/70 mt-1">Высочайшие стандарты инфекционной безопасности.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Specialists Section -->
-    <section id="specialists" class="py-20 bg-[#FAF7F2]">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-2xl mx-auto mb-16 space-y-4">
-                <span class="text-xs font-semibold uppercase tracking-widest text-velouraGoldDark bg-white px-4 py-1.5 rounded-full border border-[#E5DEC9]">Наши эксперты</span>
-                <h2 class="text-3xl sm:text-5xl font-serif font-bold text-velouraBurgundy">Meet Our Specialists</h2>
-                <p class="text-velouraDark/70 text-sm sm:text-base">Врачи-дерматокосметологи высшей квалификации, члены профессиональных ассоциаций.</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Doctor 1 -->
-                <div class="bg-white rounded-[12px] overflow-hidden border border-[#E5DEC9] shadow-sm group">
-                    <div class="h-80 overflow-hidden relative">
-                        <img src="https://images.unsplash.com/photo-1594824813589-9a67a80b8529?q=80&w=600&auto=format&fit=crop" alt="Др. Ашвария В." class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
-                            <div class="flex space-x-3 text-white">
-                                <a href="#" class="w-9 h-9 rounded-full bg-velouraBurgundy flex items-center justify-center hover:bg-velouraGold transition-colors"><i class="fa-brands fa-instagram text-sm"></i></a>
-                                <a href="#" class="w-9 h-9 rounded-full bg-velouraBurgundy flex items-center justify-center hover:bg-velouraGold transition-colors"><i class="fa-solid fa-stethoscope text-sm"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="p-6 text-center">
-                        <h3 class="font-serif font-bold text-xl text-velouraBurgundy">Др. Ашвария В.</h3>
-                        <p class="text-xs font-semibold text-velouraGoldDark uppercase tracking-wider mt-1">Главный врач, дерматолог</p>
-                        <p class="text-xs text-velouraDark/60 mt-2">Стаж работы: 12 лет</p>
-                    </div>
-                </div>
-
-                <!-- Doctor 2 -->
-                <div class="bg-white rounded-[12px] overflow-hidden border border-[#E5DEC9] shadow-sm group">
-                    <div class="h-80 overflow-hidden relative">
-                        <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?q=80&w=600&auto=format&fit=crop" alt="Др. Мира Н." class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
-                            <div class="flex space-x-3 text-white">
-                                <a href="#" class="w-9 h-9 rounded-full bg-velouraBurgundy flex items-center justify-center hover:bg-velouraGold transition-colors"><i class="fa-brands fa-instagram text-sm"></i></a>
-                                <a href="#" class="w-9 h-9 rounded-full bg-velouraBurgundy flex items-center justify-center hover:bg-velouraGold transition-colors"><i class="fa-solid fa-stethoscope text-sm"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="p-6 text-center">
-                        <h3 class="font-serif font-bold text-xl text-velouraBurgundy">Др. Мира Н.</h3>
-                        <p class="text-xs font-semibold text-velouraGoldDark uppercase tracking-wider mt-1">Врач-косметолог, трихолог</p>
-                        <p class="text-xs text-velouraDark/60 mt-2">Стаж работы: 9 лет</p>
-                    </div>
-                </div>
-
-                <!-- Doctor 3 -->
-                <div class="bg-white rounded-[12px] overflow-hidden border border-[#E5DEC9] shadow-sm group">
-                    <div class="h-80 overflow-hidden relative">
-                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=600&auto=format&fit=crop" alt="Др. Рея Капур" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
-                            <div class="flex space-x-3 text-white">
-                                <a href="#" class="w-9 h-9 rounded-full bg-velouraBurgundy flex items-center justify-center hover:bg-velouraGold transition-colors"><i class="fa-brands fa-instagram text-sm"></i></a>
-                                <a href="#" class="w-9 h-9 rounded-full bg-velouraBurgundy flex items-center justify-center hover:bg-velouraGold transition-colors"><i class="fa-solid fa-stethoscope text-sm"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="p-6 text-center">
-                        <h3 class="font-serif font-bold text-xl text-velouraBurgundy">Др. Рея Капур</h3>
-                        <p class="text-xs font-semibold text-velouraGoldDark uppercase tracking-wider mt-1">Специалист по аппаратной эстетике</p>
-                        <p class="text-xs text-velouraDark/60 mt-2">Стаж работы: 8 лет</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Testimonials Section -->
-    <section id="testimonials" class="py-20 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-2xl mx-auto mb-16 space-y-4">
-                <span class="text-xs font-semibold uppercase tracking-widest text-velouraGoldDark bg-[#FAF7F2] px-4 py-1.5 rounded-full border border-[#E5DEC9]">Отзывы пациентов</span>
-                <h2 class="text-3xl sm:text-5xl font-serif font-bold text-velouraBurgundy">What Our Patients Say</h2>
-                <p class="text-velouraDark/70 text-sm sm:text-base">Истории преображения и искренние впечатления наших гостей.</p>
-            </div>
-
-            <!-- Testimonial Slider Container -->
-            <div class="relative max-w-4xl mx-auto">
-                <div id="testimonial-slider" class="overflow-hidden">
-                    <div class="flex transition-transform duration-500 ease-in-out" id="testimonial-track">
-                        <!-- Slide 1 -->
-                        <div class="w-full flex-shrink-0 px-4">
-                            <div class="bg-[#FAF7F2] p-8 sm:p-12 rounded-[12px] border border-[#E5DEC9] shadow-sm text-center relative">
-                                <div class="text-velouraGold text-3xl mb-4"><i class="fa-solid fa-quote-left"></i></div>
-                                <p class="font-serif italic text-lg sm:text-xl text-velouraBurgundy mb-6 max-w-2xl mx-auto">
-                                    "Veloura полностью изменила мое представление об уходе за кожей. Прошла курс лазерного омоложения — результат превзошел все ожидания! Лицо сияет, кожа подтянутая и бархатистая."
-                                </p>
-                                <div class="flex items-center justify-center space-x-1 text-velouraGold mb-4">
-                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                                </div>
-                                <h4 class="font-bold text-velouraBurgundy">Екатерина Смирнова</h4>
-                                <span class="text-xs text-velouraDark/60">Пациентка клиники</span>
-                            </div>
-                        </div>
-
-                        <!-- Slide 2 -->
-                        <div class="w-full flex-shrink-0 px-4">
-                            <div class="bg-[#FAF7F2] p-8 sm:p-12 rounded-[12px] border border-[#E5DEC9] shadow-sm text-center relative">
-                                <div class="text-velouraGold text-3xl mb-4"><i class="fa-solid fa-quote-left"></i></div>
-                                <p class="font-serif italic text-lg sm:text-xl text-velouraBurgundy mb-6 max-w-2xl mx-auto">
-                                    "Потрясающая атмосфера роскоши и абсолютного профессионализма на ул. Стрелецкой. Доктор Мира подобрала индивидуальный уход и избавила меня от пигментации за пару сеансов."
-                                </p>
-                                <div class="flex items-center justify-center space-x-1 text-velouraGold mb-4">
-                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                                </div>
-                                <h4 class="font-bold text-velouraBurgundy">Анна Романова</h4>
-                                <span class="text-xs text-velouraDark/60">Пациентка клиники</span>
-                            </div>
-                        </div>
-
-                        <!-- Slide 3 -->
-                        <div class="w-full flex-shrink-0 px-4">
-                            <div class="bg-[#FAF7F2] p-8 sm:p-12 rounded-[12px] border border-[#E5DEC9] shadow-sm text-center relative">
-                                <div class="text-velouraGold text-3xl mb-4"><i class="fa-solid fa-quote-left"></i></div>
-                                <p class="font-serif italic text-lg sm:text-xl text-velouraBurgundy mb-6 max-w-2xl mx-auto">
-                                    "Лучший сервис в Москве! Очень внимательный персонал, передовое оборудование и безупречная чистота. Теперь хожу только сюда."
-                                </p>
-                                <div class="flex items-center justify-center space-x-1 text-velouraGold mb-4">
-                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                                </div>
-                                <h4 class="font-bold text-velouraBurgundy">Ольга Васильева</h4>
-                                <span class="text-xs text-velouraDark/60">Пациентка клиники</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Carousel Controls -->
-                <button onclick="prevTestimonial()" class="absolute left-0 top-1/2 -translate-y-12 -translate-x-4 sm:-translate-x-8 w-12 h-12 rounded-full bg-white border border-[#E5DEC9] text-velouraBurgundy flex items-center justify-center shadow-md hover:bg-velouraBurgundy hover:text-white transition-all">
-                    <i class="fa-solid fa-chevron-left"></i>
-                </button>
-                <button onclick="nextTestimonial()" class="absolute right-0 top-1/2 -translate-y-12 translate-x-4 sm:translate-x-8 w-12 h-12 rounded-full bg-white border border-[#E5DEC9] text-velouraBurgundy flex items-center justify-center shadow-md hover:bg-velouraBurgundy hover:text-white transition-all">
-                    <i class="fa-solid fa-chevron-right"></i>
-                </button>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA & Booking Form Section -->
-    <section id="booking" class="py-20 bg-[#FAF7F2]">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="bg-white rounded-[16px] border border-[#E5DEC9] shadow-xl overflow-hidden grid grid-cols-1 lg:grid-cols-2">
-                
-                <!-- Left Column: CTA Info -->
-                <div class="bg-velouraBurgundy p-8 sm:p-12 text-white flex flex-col justify-between space-y-8">
-                    <div class="space-y-6">
-                        <span class="text-xs font-semibold uppercase tracking-widest text-velouraGold bg-white/10 px-4 py-1.5 rounded-full border border-white/20">Начните преображение</span>
-                        <h2 class="text-3xl sm:text-5xl font-serif font-bold leading-tight">
-                            Let's Begin Your Skin Transformation
-                        </h2>
-                        <p class="text-white/80 text-sm leading-relaxed">
-                            Сделайте первый шаг к идеальной коже. Запишитесь на консультацию к нашему ведущему специалисту в клинику на ул. Стрелецкой.
-                        </p>
-                    </div>
-
-                    <div class="space-y-4 pt-6 border-t border-white/20">
-                        <div class="flex items-center space-x-3">
-                            <div class="w-8 h-8 rounded-full bg-velouraGold/20 flex items-center justify-center text-velouraGold">
-                                <i class="fa-solid fa-check text-xs"></i>
-                            </div>
-                            <span class="text-sm">Персональная диагностика кожи в подарок</span>
-                        </div>
-                        <div class="flex items-center space-x-3">
-                            <div class="w-8 h-8 rounded-full bg-velouraGold/20 flex items-center justify-center text-velouraGold">
-                                <i class="fa-solid fa-check text-xs"></i>
-                            </div>
-                            <span class="text-sm">Составление детального плана процедур</span>
-                        </div>
-                        <div class="flex items-center space-x-3">
-                            <div class="w-8 h-8 rounded-full bg-velouraGold/20 flex items-center justify-center text-velouraGold">
-                                <i class="fa-solid fa-check text-xs"></i>
-                            </div>
-                            <span class="text-sm">Конфиденциальность и абсолютная безопасность</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Right Column: Form -->
-                <div class="p-8 sm:p-12 flex flex-col justify-center">
-                    <h3 class="text-2xl font-serif font-bold text-velouraBurgundy mb-6">Записаться на прием</h3>
-                    
-                    <form id="booking-form" onsubmit="handleFormSubmit(event)" class="space-y-4">
-                        <div>
-                            <label class="block text-xs font-semibold uppercase tracking-wider text-velouraDark mb-1">Ваше имя</label>
-                            <input type="text" id="name" required placeholder="Введите ваше имя" class="w-full px-4 py-3 rounded-[8px] border border-[#E5DEC9] bg-[#FAF7F2] text-sm focus:outline-none focus:border-velouraBurgundy focus:ring-1 focus:ring-velouraBurgundy transition-all">
-                        </div>
-
-                        <div>
-                            <label class="block text-xs font-semibold uppercase tracking-wider text-velouraDark mb-1">Телефон</label>
-                            <input type="tel" id="phone" required placeholder="+7 (999) 000-00-00" class="w-full px-4 py-3 rounded-[8px] border border-[#E5DEC9] bg-[#FAF7F2] text-sm focus:outline-none focus:border-velouraBurgundy focus:ring-1 focus:ring-velouraBurgundy transition-all">
-                        </div>
-
-                        <div>
-                            <label class="block text-xs font-semibold uppercase tracking-wider text-velouraDark mb-1">Email</label>
-                            <input type="email" id="email" required placeholder="example@domain.ru" class="w-full px-4 py-3 rounded-[8px] border border-[#E5DEC9] bg-[#FAF7F2] text-sm focus:outline-none focus:border-velouraBurgundy focus:ring-1 focus:ring-velouraBurgundy transition-all">
-                        </div>
-
-                        <div>
-                            <label class="block text-xs font-semibold uppercase tracking-wider text-velouraDark mb-1">Выбор услуги</label>
-                            <select id="service" class="w-full px-4 py-3 rounded-[8px] border border-[#E5DEC9] bg-[#FAF7F2] text-sm focus:outline-none focus:border-velouraBurgundy focus:ring-1 focus:ring-velouraBurgundy transition-all">
-                                <option value="laser">Лазерное омоложение</option>
-                                <option value="pigmentation">Удаление пигментации</option>
-                                <option value="acne">Лечение акне и постакне</option>
-                                <option value="antiaging">Anti-Age терапия</option>
-                                <option value="epilation">Лазерная эпиляция</option>
-                                <option value="hydro">Гидро-пилинг лица</option>
-                            </select>
-                        </div>
-
-                        <div>
-                            <label class="block text-xs font-semibold uppercase tracking-wider text-velouraDark mb-1">Сообщение (необязательно)</label>
-                            <textarea id="message" rows="3" placeholder="Укажите удобное время или пожелания..." class="w-full px-4 py-3 rounded-[8px] border border-[#E5DEC9] bg-[#FAF7F2] text-sm focus:outline-none focus:border-velouraBurgundy focus:ring-1 focus:ring-velouraBurgundy transition-all"></textarea>
-                        </div>
-
-                        <button type="submit" class="w-full bg-velouraBurgundy hover:bg-velouraBurgundyHover text-white font-semibold uppercase tracking-wider text-xs py-4 rounded-[8px] shadow-md hover:active:scale-[0.99] transition-all duration-200">
-                            Book Appointment
-                        </button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer id="contact" class="bg-[#333333] text-[#FAF7F2] pt-16 pb-8 border-t border-[#444]">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 pb-12 border-b border-white/10">
-                <!-- Col 1: Logo & Desc -->
-                <div class="space-y-4">
-                    <div class="flex items-center space-x-3">
-                        <div class="w-10 h-10 rounded-full bg-velouraBurgundy flex items-center justify-center text-velouraGold shadow-md">
-                            <i class="fa-solid fa-spa text-lg"></i>
-                        </div>
-                        <div class="flex flex-col">
-                            <span class="font-serif text-2xl font-bold tracking-wider text-white">VELOURA</span>
-                            <span class="text-[10px] tracking-[0.25em] uppercase text-velouraGold font-medium">Skin Clinic</span>
-                        </div>
-                    </div>
-                    <p class="text-xs text-white/70 leading-relaxed">
-                        Премиальная клиника эстетической медицины и передовой дерматологии в Москве. Сияние вашей кожи — наша главная забота.
-                    </p>
-                    <div class="flex space-x-3 pt-2">
-                        <a href="#" class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-velouraGold hover:text-velouraBurgundy transition-colors"><i class="fa-brands fa-telegram text-sm"></i></a>
-                        <a href="#" class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-velouraGold hover:text-velouraBurgundy transition-colors"><i class="fa-brands fa-whatsapp text-sm"></i></a>
-                        <a href="#" class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-velouraGold hover:text-velouraBurgundy transition-colors"><i class="fa-brands fa-vk text-sm"></i></a>
-                    </div>
-                </div>
-
-                <!-- Col 2: Quick Links -->
-                <div class="space-y-4">
-                    <h4 class="font-serif font-bold text-lg text-velouraGold">Быстрые ссылки</h4>
-                    <ul class="space-y-2 text-xs text-white/80">
-                        <li><a href="#hero" class="hover:text-velouraGold transition-colors">Главная страница</a></li>
-                        <li><a href="#services" class="hover:text-velouraGold transition-colors">Наши услуги</a></li>
-                        <li><a href="#results" class="hover:text-velouraGold transition-colors">Результаты (До / После)</a></li>
-                        <li><a href="#about" class="hover:text-velouraGold transition-colors">О клинике</a></li>
-                        <li><a href="#specialists" class="hover:text-velouraGold transition-colors">Наши специалисты</a></li>
-                        <li><a href="#testimonials" class="hover:text-velouraGold transition-colors">Отзывы пациентов</a></li>
-                    </ul>
-                </div>
-
-                <!-- Col 3: Treatments -->
-                <div class="space-y-4">
-                    <h4 class="font-serif font-bold text-lg text-velouraGold">Услуги клиники</h4>
-                    <ul class="space-y-2 text-xs text-white/80">
-                        <li><a href="#services" class="hover:text-velouraGold transition-colors">Лазерное омоложение</a></li>
-                        <li><a href="#services" class="hover:text-velouraGold transition-colors">Удаление пигментации</a></li>
-                        <li><a href="#services" class="hover:text-velouraGold transition-colors">Лечение акне и постакне</a></li>
-                        <li><a href="#services" class="hover:text-velouraGold transition-colors">Anti-Age терапия</a></li>
-                        <li><a href="#services" class="hover:text-velouraGold transition-colors">Лазерная эпиляция</a></li>
-                        <li><a href="#services" class="hover:text-velouraGold transition-colors">Гидро-пилинг лица</a></li>
-                    </ul>
-                </div>
-
-                <!-- Col 4: Contacts -->
-                <div class="space-y-4">
-                    <h4 class="font-serif font-bold text-lg text-velouraGold">Контакты</h4>
-                    <ul class="space-y-3 text-xs text-white/80">
-                        <li class="flex items-start space-x-2">
-                            <i class="fa-solid fa-location-dot text-velouraGold mt-0.5"></i>
-                            <span>г. Москва, ул. Стрелецкая д. 15</span>
-                        </li>
-                        <li class="flex items-center space-x-2">
-                            <i class="fa-solid fa-phone text-velouraGold"></i>
-                            <a href="tel:+74951234567" class="hover:text-velouraGold">+7 (495) 123-45-67</a>
-                        </li>
-                        <li class="flex items-center space-x-2">
-                            <i class="fa-solid fa-envelope text-velouraGold"></i>
-                            <a href="mailto:hello@velouraskinclinic.ru" class="hover:text-velouraGold">hello@velouraskinclinic.ru</a>
-                        </li>
-                        <li class="flex items-center space-x-2">
-                            <i class="fa-solid fa-clock text-velouraGold"></i>
-                            <span>Ежедневно с 09:00 до 21:00</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- Bottom Row -->
-            <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-white/60 space-y-4 sm:space-y-0">
-                <p>&copy; 2026 Veloura Skin Clinic. Все права защищены.</p>
-                <div class="flex space-x-6">
-                    <a href="#" class="hover:text-velouraGold transition-colors">Политика конфиденциальности</a>
-                    <a href="#" class="hover:text-velouraGold transition-colors">Условия предоставления услуг</a>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Service Details Modal -->
-    <div id="service-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300">
-        <div id="service-modal-content" class="bg-[#FAF7F2] w-full max-w-2xl mx-4 rounded-[16px] shadow-2xl border border-[#E5DEC9] overflow-hidden transform scale-95 transition-transform duration-300 max-h-[90vh] flex flex-col">
-            <div class="bg-velouraBurgundy text-white px-6 py-4 flex items-center justify-between">
-                <h3 id="modal-title" class="font-serif text-xl font-bold">Название процедуры</h3>
-                <button onclick="closeServiceModal()" class="text-white/80 hover:text-white text-xl p-1"><i class="fa-solid fa-xmark"></i></button>
-            </div>
-            <div class="p-6 overflow-y-auto space-y-6 flex-1">
-                <div>
-                    <h4 class="text-xs font-semibold uppercase tracking-wider text-velouraGoldDark mb-2">Описание процедуры</h4>
-                    <p id="modal-desc" class="text-sm text-velouraDark/80 leading-relaxed"></p>
-                </div>
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div class="bg-white p-4 rounded-[10px] border border-[#E5DEC9]">
-                        <span class="text-xs font-semibold uppercase tracking-wider text-velouraBurgundy">Длительность</span>
-                        <p id="modal-duration" class="text-sm font-medium text-velouraDark mt-1"></p>
-                    </div>
-                    <div class="bg-white p-4 rounded-[10px] border border-[#E5DEC9]">
-                        <span class="text-xs font-semibold uppercase tracking-wider text-velouraBurgundy">Противопоказания</span>
-                        <p id="modal-contra" class="text-sm font-medium text-velouraDark mt-1"></p>
-                    </div>
-                </div>
-                <div>
-                    <h4 class="text-xs font-semibold uppercase tracking-wider text-velouraGoldDark mb-2">Успешные кейсы (До / После)</h4>
-                    <div class="grid grid-cols-2 gap-4">
-                        <div class="rounded-[8px] overflow-hidden border border-[#E5DEC9]">
-                            <img id="modal-img-before" src="" alt="До" class="w-full h-36 object-cover">
-                            <div class="bg-white py-1.5 text-center text-[10px] uppercase font-bold text-velouraDark">До</div>
-                        </div>
-                        <div class="rounded-[8px] overflow-hidden border border-[#E5DEC9]">
-                            <img id="modal-img-after" src="" alt="После" class="w-full h-36 object-cover">
-                            <div class="bg-velouraBurgundy py-1.5 text-center text-[10px] uppercase font-bold text-white">После</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="bg-white px-6 py-4 border-t border-[#E5DEC9] flex justify-end">
-                <a href="#booking" onclick="closeServiceModal()" class="bg-velouraBurgundy hover:bg-velouraBurgundyHover text-white text-xs uppercase tracking-wider font-semibold px-6 py-3 rounded-full shadow-sm transition-all">
-                    Записаться на процедуру
-                </a>
-            </div>
-        </div>
-    </div>
-
-    <!-- Video Tour Modal -->
-    <div id="video-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300">
-        <div class="bg-[#FAF7F2] w-full max-w-3xl mx-4 rounded-[16px] shadow-2xl border border-[#E5DEC9] overflow-hidden">
-            <div class="bg-velouraBurgundy text-white px-6 py-4 flex items-center justify-between">
-                <h3 class="font-serif text-xl font-bold">Виртуальный тур по клинике Veloura</h3>
-                <button onclick="closeVideoTourModal()" class="text-white/80 hover:text-white text-xl p-1"><i class="fa-solid fa-xmark"></i></button>
-            </div>
-            <div class="p-6">
-                <div class="aspect-video bg-black rounded-[10px] overflow-hidden relative flex items-center justify-center">
-                    <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=1200&auto=format&fit=crop" alt="Клиника тур" class="absolute inset-0 w-full h-full object-cover brightness-[0.7]">
-                    <div class="relative z-10 text-center text-white space-y-3">
-                        <div class="w-16 h-16 rounded-full bg-velouraBurgundy/90 text-velouraGold mx-auto flex items-center justify-center text-2xl shadow-lg border border-velouraGold/50">
-                            <i class="fa-solid fa-play ml-1"></i>
-                        </div>
-                        <p class="text-sm font-medium">Интерьеры премиум-класса на ул. Стрелецкой</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Custom Message Box Notification -->
-    <div id="notification-box" class="fixed bottom-6 right-6 z-50 transform translate-y-24 opacity-0 transition-all duration-300 bg-velouraBurgundy text-white px-6 py-4 rounded-[12px] shadow-2xl border border-velouraGold flex items-center space-x-3">
-        <i class="fa-solid fa-circle-check text-velouraGold text-xl"></i>
-        <div>
-            <h4 class="font-bold text-sm">Успешно!</h4>
-            <p id="notification-text" class="text-xs text-white/80">Ваша заявка принята.</p>
-        </div>
-    </div>
-
-    <!-- JavaScript Logic -->
-    <script>
-        // Hero Slider Logic
-        let currentHeroIndex = 0;
-        const heroSlides = document.querySelectorAll('.hero-slide');
-        const heroDots = document.querySelectorAll('.hero-dot');
-
-        function showHeroSlide(index) {
-            heroSlides.forEach((slide, i) => {
-                slide.style.opacity = (i === index) ? '1' : '0';
-            });
-            heroDots.forEach((dot, i) => {
-                dot.style.backgroundColor = (i === index) ? '#5E2B4D' : 'rgba(94, 43, 77, 0.3)';
-            });
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: #ddd;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
         }
 
-        function nextHeroSlide() {
-            currentHeroIndex = (currentHeroIndex + 1) % heroSlides.length;
-            showHeroSlide(currentHeroIndex);
+        .dot.active {
+            background-color: var(--accent-burgundy);
+            width: 32px;
+            border-radius: 6px;
         }
 
-        function currentSlide(index) {
-            currentHeroIndex = index;
-            showHeroSlide(currentHeroIndex);
-        }
-
-        setInterval(nextHeroSlide, 5000);
-
-        // Mobile Menu Toggle
-        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-
-        mobileMenuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
-
-        // Close mobile menu on link click
-        mobileMenu.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.add('hidden');
-            });
-        });
-
-        // Before & After Range Slider Logic
-        function slideBa(element) {
-            const slider = element.closest('.ba-slider');
-            const resize = slider.querySelector('.ba-resize');
-            const handle = slider.querySelector('.ba-handle');
-            const val = element.value;
-
-            resize.style.width = val + '%';
-            handle.style.left = val + '%';
-        }
-
-        // Service Details Data
-        const serviceData = {
-            laser: {
-                title: "Лазерное омоложение",
-                desc: "Высокоэффективная процедура фракционного лазерного омоложения стимулирует активную выработку нового коллагена и эластина, разглаживает мелкие морщины, выравнивает рельеф и возвращает коже здоровое сияние.",
-                duration: "60 - 90 минут",
-                contra: "Беременность, период лактации, острые воспалительные процессы, свежий загар (менее 3 недель).",
-                before: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=600&auto=format&fit=crop",
-                after: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=600&auto=format&fit=crop"
-            },
-            pigmentation: {
-                title: "Удаление пигментации",
-                desc: "Прицельное разрушение скоплений меланина с помощью современных лазерных систем. Процедура позволяет полностью избавиться от веснушек, возрастных пятен и мелазмы без повреждения окружающих тканей.",
-                duration: "45 - 60 минут",
-                contra: "Сахарный диабет в стадии декомпенсации, онкологические заболевания, фотодерматозы.",
-                before: "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?q=80&w=600&auto=format&fit=crop",
-                after: "https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=600&auto=format&fit=crop"
-            },
-            acne: {
-                title: "Лечение акне и постакне",
-                desc: "Комплексный протокол лечения проблемной кожи, включающий аппаратное очищение, лазерное подавление бактерий Propionibacterium acnes и сглаживание рубцов постакне.",
-                duration: "60 - 75 минут",
-                contra: "Острые инфекционные заболевания кожи, склонность к образованию келоидных рубцов.",
-                before: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=600&auto=format&fit=crop",
-                after: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=600&auto=format&fit=crop"
-            },
-            antiaging: {
-                title: "Anti-Age терапия",
-                desc: "Индивидуальный комплекс омолаживающих процедур, направленный на глубокую подтяжку каркаса лица, устранение птоза и восполнение утраченных объемов.",
-                duration: "90 минут",
-                contra: "Нарушения свертываемости крови, тяжелые соматические патологии.",
-                before: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=600&auto=format&fit=crop",
-                after: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=600&auto=format&fit=crop"
-            },
-            epilation: {
-                title: "Лазерная эпиляция",
-                desc: "Безболезненное удаление волос с использованием диодного лазера последнего поколения. Подходит для любого фототипа кожи, гарантирует гладкость на долгие годы.",
-                duration: "30 - 60 минут",
-                contra: "Свежий загар, беременность, повреждения кожи в зоне обработки.",
-                before: "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?q=80&w=600&auto=format&fit=crop",
-                after: "https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=600&auto=format&fit=crop"
-            },
-            hydro: {
-                title: "Гидро-пилинг лица",
-                desc: "Многоэтапное вакуумное очищение, бережная эксфолиация и глубокое насыщение кожи питательными сыворотками с антиоксидантами и гиалуроновой кислотой.",
-                duration: "45 минут",
-                contra: "Множественные родинки или папилломы в зоне воздействия, герпес в активной фазе.",
-                before: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=600&auto=format&fit=crop",
-                after: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=600&auto=format&fit=crop"
-            }
-        };
-
-        const serviceModal = document.getElementById('service-modal');
-        const serviceModalContent = document.getElementById('service-modal-content');
-
-        function openServiceModal(serviceKey) {
-            const data = serviceData[serviceKey];
-            if (!data) return;
-
-            document.getElementById('modal-title').innerText = data.title;
-            document.getElementById('modal-desc').innerText = data.desc;
-            document.getElementById('modal-duration').innerText = data.duration;
-            document.getElementById('modal-contra').innerText = data.contra;
-            document.getElementById('modal-img-before').src = data.before;
-            document.getElementById('modal-img-after').src = data.after;
-
-            serviceModal.classList.remove('opacity-0', 'pointer-events-none');
-            serviceModalContent.classList.remove('scale-95');
-        }
-
-        function closeServiceModal() {
-            serviceModal.classList.add('opacity-0', 'pointer-events-none');
-            serviceModalContent.classList.add('scale-95');
-        }
-
-        serviceModal.addEventListener('click', (e) => {
-            if (e.target === serviceModal) {
-                closeServiceModal();
-            }
-        });
-
-        // Video Tour Modal
-        const videoModal = document.getElementById('video-modal');
-
-        function openVideoTourModal() {
-            videoModal.classList.remove('opacity-0', 'pointer-events-none');
-        }
-
-        function closeVideoTourModal() {
-            videoModal.classList.add('opacity-0', 'pointer-events-none');
-        }
-
-        videoModal.addEventListener('click', (e) => {
-            if (e.target === videoModal) {
-                closeVideoTourModal();
-            }
-        });
-
-        // Testimonial Carousel Logic
-        let currentTestimonialIndex = 0;
-        const testimonialTrack = document.getElementById('testimonial-track');
-        const totalTestimonials = 3;
-
-        function updateTestimonialSlider() {
-            testimonialTrack.style.transform = `translateX(-${currentTestimonialIndex * 100}%)`;
-        }
-
-        function nextTestimonial() {
-            currentTestimonialIndex = (currentTestimonialIndex + 1) % totalTestimonials;
-            updateTestimonialSlider();
-        }
-
-        function prevTestimonial() {
-            currentTestimonialIndex = (currentTestimonialIndex - 1 + totalTestimonials) % totalTestimonials;
-            updateTestimonialSlider();
-        }
-
-        setInterval(nextTestimonial, 7000);
-
-        // Form Submission & Notification
-        function handleFormSubmit(event) {
-            event.preventDefault();
-            
-            const name = document.getElementById('name').value;
-            const phone = document.getElementById('phone').value;
-
-            if (!name || !phone) {
-                return;
-            }
-
-            // Show success notification box instead of alert()
-            const notification = document.getElementById('notification-box');
-            const notificationText = document.getElementById('notification-text');
-            notificationText.innerText = `Спасибо, ${name}! Мы свяжемся с вами в ближайшее время.`;
-            
-            notification.classList.remove('translate-y-24', 'opacity-0');
-            
-            document.getElementById('booking-form').reset();
-
-            setTimeout(() => {
-                notification.classList.add('translate-y-24', 'opacity-0');
-            }, 5000);
-        }
-    </script>
-</body>
-</html>
+        /* --- FEATURES BAR --- */
+        .features-bar {
+            background-color: var(--white);
+            padding: 40px 0;
+            border-top: 1px solid rgba
